@@ -8,7 +8,6 @@ const express = require('express');
 const { DateTime } = require('luxon');
 const { google } = require('googleapis');
 const cors = require('cors');
-const e = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 1188;
@@ -24,9 +23,9 @@ const fnOptions = {
 };
 
 const corsOptions = {
-    origin: isDev ? ['http://metafest.local:1188'] : [
-        'https://metafest.wtf',
-        'https://test.metafest.wtf',
+    origin: isDev ? ['http://metagame.local:3000', 'http://localhost:3000'] : [
+        'https://metagame.wtf',
+        'https://test.metagame.wtf',
     ],
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -51,7 +50,8 @@ app.get('/events', async (req, res) => {
         const result = await calendar.events.list(
             {
                 calendarId,
-                // timeMin: new Date().toISOString(),
+                timeMin: DateTime.now().toISO(),
+                timeMax: DateTime.now().plus({ days: 30 }).toISO(),
                 singleEvents: true,
                 orderBy: 'startTime',
             }
