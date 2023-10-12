@@ -53,7 +53,7 @@ app.get('/events', async (req, res) => {
             {
                 calendarId,
                 timeMin: DateTime.now().toISO(),
-                timeMax: DateTime.now().plus({ days: 4 }).toISO(),
+                timeMax: DateTime.now().plus({ days: 7 }).toISO(),
                 singleEvents: true,
                 orderBy: 'startTime',
             }
