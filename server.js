@@ -60,7 +60,6 @@ app.get('/events', async (req, res) => {
         );
 
         const events = result.data.items;
-        console.log('events', events);
         res.status(200).json(result);
     } catch (err) {
         console.log('err', err);
