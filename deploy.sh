@@ -33,7 +33,8 @@ git checkout main
 
 # Pull the latest code
 echo -e "${OKBLUE}Pulling the latest code...${ENDC}"
-git fetch && git pull origin main
+
+git fetch && OUTPUT=$(git pull origin main)
 
 # Check if pnpm is installed
 echo -e "${GRAY}Checking if pnpm is installed and install if not...${ENDC}"
@@ -53,9 +54,23 @@ fi
 echo -e "${PINK}Installing dependencies...${ENDC}"
 pnpm install
 
-echo -e "${OKBLUE}Restarting server...${ENDC}"
-cd $HOME && pm2 restart ecosystem.config.js --only metagame-api
-echo -e "${OKGREEN}Server restarted successfully.${ENDC}"
+# Check if there were changes
+if [[ $OUTPUT != *"Already up to date."* ]]; then
+    echo -e "${OKBLUE}Restarting server...${ENDC}"
+    cd $HOME && pm2 restart ecosystem.config.js --only metagame-api
+
+    # Sleep for a few seconds to give the server time to start
+    sleep 5
+
+    # Check server status
+    if pm2 list | grep "metagame-api" | grep -q "online"; then
+        echo -e "${OKGREEN}Server restarted successfully.${ENDC}"
+    else
+        echo -e "${FAIL}Server failed to start.${ENDC}"
+    fi
+else
+    echo -e "${OKGREEN}No changes detected. Server restart not required.${ENDC}"
+fi
 
 # Exit
 echo -e "${OKGREEN}Done.${ENDC}"
