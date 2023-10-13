@@ -27,7 +27,7 @@ const corsOptions = {
         'https://metagame.wtf',
         'https://test.metagame.wtf',
         'http://localhost:3000',
-        'http://metagame.local:3000',
+        'http://metagame.local:3000', // TODO: remove this
         'https://frontend-pr-1626-mjhnbmqqna-uk.a.run.app'
     ],
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
