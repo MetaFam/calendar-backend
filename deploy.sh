@@ -15,6 +15,8 @@ GRAY='\033[38;2;128;128;128m'
 DARK_GRAY='\033[38;2;68;68;68m'
 PINK='\033[38;2;255;20;147m'
 
+echo -e "${HEADER}Deploying the stuff...${ENDC}"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm use 18
@@ -60,4 +62,4 @@ pnpm install
 # pnpm frontend:deploy
 
 # Exit
-echo -e "${BOLD}Done.${ENDC}"
+echo -e "${BOLD + OKGREEN}Done.${ENDC}"
