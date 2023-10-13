@@ -62,4 +62,4 @@ pnpm install
 # pnpm frontend:deploy
 
 # Exit
-echo -e "${BOLD + OKGREEN}Done.${ENDC}"
+echo -e "${OKGREEN}Done.${ENDC}"
