@@ -53,13 +53,9 @@ fi
 echo -e "${PINK}Installing dependencies...${ENDC}"
 pnpm install
 
-# Run the build command
-# echo -e "${SLATE}Building the frontend...${ENDC}"
-# pnpm frontend:build
-
-# Deploy to Fleek
-# echo -e "${DARK_GRAY}Deploying to Fleek...${ENDC}"
-# pnpm frontend:deploy
+echo -e "${OKBLUE}Restarting server...${ENDC}"
+cd $HOME && pm2 restart ecosystem.config.js --only metagame-api
+echo -e "${OKGREEN}Server restarted successfully.${ENDC}"
 
 # Exit
 echo -e "${OKGREEN}Done.${ENDC}"
